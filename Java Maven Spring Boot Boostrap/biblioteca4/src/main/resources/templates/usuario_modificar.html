@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modificar Usuario</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <form class="formulario" th:action="@{/perfil/__${usuario.id}__}" method="POST" enctype="multipart/form-data">
+
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                
+                <input hidden th:value="${id}" name="id">
+
+                <div class="form-group">
+                    <label class="mb-2">Editar Usuarios</label>      
+                </div>
+                
+                <div class="form-group my-3">
+                    <input type="text" class="form-control" name="nombre" th:value="${usuario.nombre}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="email" class="form-control" name="email" th:value="${usuario.email}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo" >
+                </div>
+                <div class="form-group my-3">
+                    <input type="password" class="form-control" name="password" placeholder="PASSWORD">
+                </div>
+                <div class="form-group my-3">
+                    <input type="password" class="form-control" name="password2" placeholder="REPETIR PASSWORD">
+                </div>
+
+                <button type="submit" class="btn btn-primary"> Actualizar </button>
+                
+                <section class="py-5 text-center container">
+                    <div class="row py-lg-5">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </form>
+
+        </div>
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

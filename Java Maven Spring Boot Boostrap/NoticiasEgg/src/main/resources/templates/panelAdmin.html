@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Panel Administrador</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+            .content {
+                flex: 1;
+                margin-bottom: 3rem; /* Ajusta el espacio entre el contenido y el footer */
+            }
+            footer {
+                background-color: #f8f9fa;
+                border-top: 1px solid #e5e5e5;
+                padding: 2rem 0; /* Espacio superior e inferior en el footer */
+            }
+            .containerFooter {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito!</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+        <div class="container my-5">
+            <div class="d-flex align-items-center" style="height: 300px;">
+                <div style="margin-right: 400px;">
+                    <img src="/img/scout.jpg" alt="scout" class="img-fluid" style="height: 100%;">
+                </div>
+                <div>
+                    <h1 class="display-4 text-primary">Bienvenido Admin</h1>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <footer class="text-muted py-5 footer-left" style="margin-top: 325px;">
+            <div class="container-fluid">
+                <p class="mb-1">Album example is &copy; Bootstrap,<br>but please download and customize it for yourself!</p>
+                <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+                <p class="float-end mb-1">
+                    <a href="#" style="text-decoration:none"><span>⬆️</span> Back to top</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

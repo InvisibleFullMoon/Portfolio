@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Noticia</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+        
+        <header>
+            <div class="container">
+                <h2 >Creador de Noticias</h2>
+            </div>
+        </header>
+        
+        <div class="container">
+
+            <form action="/noticias/crear" method="POST">
+                
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="titulo" placeholder="TITULO">      
+                </div>
+                <div class="form-group">
+                    <textarea  class="form-control" name="cuerpo" placeholder="CUERPO DE LA NOTICIA" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary"> Subir </button>
+                
+                <section class="py-5 text-center container">
+                    <div class="row py-lg-5">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <a th:href="@{/noticias/admin}" class="btn btn-primary my-2">Volver</a>
+                        </div>
+                    </div>
+                </section>
+
+            </form>
+
+        </div>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

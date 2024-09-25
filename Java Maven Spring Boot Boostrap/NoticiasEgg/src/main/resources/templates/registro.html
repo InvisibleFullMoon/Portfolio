@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EGG Noticias</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+            .content {
+                flex: 1;
+                margin-bottom: 3rem; /* Ajusta el espacio entre el contenido y el footer */
+            }
+            footer {
+                background-color: #f8f9fa;
+                border-top: 1px solid #e5e5e5;
+                padding: 2rem 0; /* Espacio superior e inferior en el footer */
+            }
+            .containerFooter {
+                max-width: 960px;
+                margin: 0 auto;
+            }
+            .titulo-noticias {
+                color: #007bff; /* Color azul Bootstrap */
+                font-size: 2.5rem; /* Tamaño de fuente grande */
+                font-weight: bold; /* Fuente en negrita */
+                text-align: center; /* Centrar el texto */
+                margin-bottom: 2rem; /* Espacio debajo del título */
+            }
+            .card {
+                border-radius: 8px; /* Bordes redondeados */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+                transition: transform 0.2s; /* Transición para el hover */
+            }
+            .card:hover {
+                transform: scale(1.02); /* Efecto de aumento en hover */
+            }
+            .card-title {
+                font-size: 1.25rem; /* Tamaño de fuente del título */
+                font-weight: bold; /* Fuente en negrita */
+            }
+            .card-body {
+                padding: 1.25rem; /* Padding personalizado */
+            }
+            .album {
+                margin-bottom: 2rem; /* Margen en la parte inferior del álbum */
+            }
+        </style>
+    </head>
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <header class="mt-5">
+            <div class="container">
+                <h2 class="text-center mb-4">¡Regístrate!</h2>
+            </div>
+        </header>
+
+        <div class="container mt-4 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form th:action="@{/registro}" method="POST">
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" id="nombre" class="form-control" name="nombre" placeholder="Nombre" th:value="${nombre}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" class="form-control" name="email" placeholder="Email" th:value="${email}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Contraseña" th:value="${password}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2" class="form-label">Repetir Contraseña</label>
+                                    <input type="password" id="password2" class="form-control" name="password2" placeholder="Repetir Contraseña" th:value="${password2}">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a th:href="@{/}" class="btn btn-secondary">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-muted py-5">
+            <div class="containerFooter">
+                <p class="mb-1">Egg Noticias &copy; 2024</p>
+                <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+                <p class="float-end mb-1">
+                    <a href="#" style="text-decoration:none"><span>⬆️</span> Back to top</a>
+                </p>
+            </div>
+        </footer>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

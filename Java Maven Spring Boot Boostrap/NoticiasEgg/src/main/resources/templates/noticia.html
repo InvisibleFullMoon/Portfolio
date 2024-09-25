@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:text="${noticia.titulo}">Noticia</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+            body {
+                background-color: #f8f9fa;
+            }
+            .news-header {
+                background-color: #343a40;
+                color: #ffffff;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .news-body {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            footer {
+                background-color: #343a40;
+                color: #ffffff;
+                border-top: 1px solid #e5e5e5;
+                padding: 2rem 0;
+            }
+            .btn-custom {
+                background-color: #007bff;
+                color: #ffffff;
+                border: none;
+            }
+            .btn-custom:hover {
+                background-color: #0056b3;
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <div class="container my-5">
+            <div class="news-header">
+                <h1 class="text-center" th:text="${noticia.titulo}"></h1>
+            </div>
+
+            <div class="news-body">
+                <p th:text="${noticia.cuerpo}"></p>
+                <a class="btn btn-custom" th:href="@{/}">Volver a Inicio</a>
+            </div>
+        </div>
+
+        <footer class="text-muted py-5">
+            <div class="container">
+                <p class="mb-1">Egg Noticias &copy; 2024</p>
+                <p class="mb-0">New to Bootstrap? <a href="/" class="text-white">Visit the homepage</a> or read our <a href="../getting-started/introduction/" class="text-white">getting started guide</a>.</p>
+            </div>
+        </footer>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+
+

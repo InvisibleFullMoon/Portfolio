@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista Noticias</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <header>
+            <div class="container">
+                <h2 >Lista de Usuarios</h2>
+            </div>
+        </header>
+
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Activo</th>
+                    <th>Fecha de alta</th>
+                    <th>Sueldo</th>
+                    <th>Rol</th>
+                    <th>Tipo de Usuario</th>
+                    <th>Acciones</th>
+                    <th>Dar Alta</th>
+                </tr>
+            </thead>
+            <tbody th:each="usuario : ${usuarios}">
+                <tr>
+                    <td th:text="${usuario.id}"></td>
+                    <td th:text="${usuario.nombreUsuario}"></td>
+                    <td th:text="${usuario.activo}"></td>
+                    <td th:text="${usuario.fechaDeAlta}"></td>
+                    <td>
+                        <span th:if="${usuario instanceof T(com.egg.NoticiasEgg.entidades.Periodista)}" th:text="${#numbers.formatDecimal(usuario.sueldoMensual, 1, 2)}"></span>
+                    </td>
+                    <td th:text="${usuario.rol}"></td>
+                    <td th:text="${usuario.getClass().getName()}"></td>
+                    <td>
+                        <form th:action="@{/noticias/usuarios/eliminar/__${usuario.id}__}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Eliminar</button>
+                        </form>
+                    </td>
+                    <td th:if="${usuario.rol.name() == 'USER'}">
+                        <form th:action="@{/noticias/dardealta}" method="post">
+                            <input type="hidden" name="id" th:value="${usuario.id}" />
+                            <label for="fechaDeAlta">Fecha de Alta:</label>
+                            <input type="date" id="fechaDeAlta" name="fechaDeAlta" required />
+                            <label for="sueldoMensual">Sueldo Mensual:</label>
+                            <input type="number" id="sueldoMensual" name="sueldoMensual" step="0.01" required />
+                            <button type="submit" class="btn btn-primary">Dar Alta</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <a th:href="@{/noticias/admin}" class="btn btn-primary my-2">Volver</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista Noticias</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .dropdown-menu {
+                width: auto; /* Ajusta el ancho del dropdown */
+                max-width: 100%; /* Asegura que no se desborde del contenedor padre */
+                position: absolute;
+                top: 100%;
+                right: 0; /* Alinea el dropdown al lado derecho */
+                left: auto; /* Evita que el dropdown se expanda hacia la izquierda */
+                overflow: hidden; /* Evita el desbordamiento del contenido */
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <header>
+            <div class="container">
+                <h2 >Lista de Noticias</h2>
+            </div>
+        </header>
+
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id de la Noticia</th>
+                    <th scope="col">Titulo de la Noticia</th>
+                    <th scope="col">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody th:each="noticia : ${noticias}"> 
+                <tr>
+                    <th scope="row" th:text="${noticia.id}"></th>
+                    <td th:text="${noticia.titulo}"></td>
+                    <td>
+                        <a th:href="@{/noticias/modificar/__${noticia.id}__}" class="btn btn-primary btn-sm mr-2">
+                            <i class="fas fa-edit"></i> Modificar
+                        </a>
+
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <form th:action="@{/noticias/eliminar/__${noticia.id}__}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Eliminar</button>
+                            </form>
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <a th:href="@{/noticias/admin}" class="btn btn-primary my-2">Volver</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- jQuery and Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

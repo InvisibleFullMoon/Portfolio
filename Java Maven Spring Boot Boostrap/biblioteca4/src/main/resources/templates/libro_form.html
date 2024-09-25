@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Libros</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container mt-4">
+            <h2>Cargar Libro</h2>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        
+        <form class="formulario" action="/libro/registro" method="POST">
+            
+            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error ð</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito!</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="number" class="form-control" name="isbn" placeholder="ISBN">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="titulo" placeholder="Título del libro">
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="ejemplares" placeholder="cantidad de ejemplares">
+            </div>
+            
+
+            <div class="form-group">
+                
+                <select name="idAutor">
+                    <option>Seleccionar Autor</option>
+                    
+                    <option th:each="autor : ${autores}"
+                            th:value="${autor.id}"
+                            th:text="${autor.nombre}"
+                            />
+                </select>
+            </div>
+            
+            
+
+            <div class="form-group">
+                <select name="idEditorial">
+                    <option>Seleccionar Editorial</option>
+                    <option th:each="editorial : ${editoriales}"
+                            th:value="${editorial.id}"
+                            th:text="${editorial.nombre}"
+                            />
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
